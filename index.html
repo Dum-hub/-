@@ -11,20 +11,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #000;
-            color: #fff;
+            background-color: #1700FE; /* Синий фон */
+            color: #FFFFFF; /* Белый текст */
             font-family: Arial, sans-serif;
+            overflow: hidden; /* Убираем скролл */
         }
         .container {
             text-align: center;
+            transition: opacity 0.5s ease-in-out; /* Анимация перехода */
         }
         .hand-outline {
             width: 200px;
             height: auto;
             cursor: pointer;
+            transition: transform 0.3s ease; /* Анимация при наведении */
+        }
+        .hand-outline:hover {
+            transform: scale(1.1); /* Увеличиваем ладонь при наведении */
         }
         .prediction-page {
             display: none;
+            opacity: 0; /* Начальная прозрачность для анимации */
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #FFFFFF; /* Белый фон кнопки */
+            color: #0000FF; /* Синий текст кнопки */
+            border: none;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -42,15 +59,44 @@
     </div>
 
     <script>
+        // Функция для показа страницы с предсказанием
         function showPrediction() {
-            document.getElementById('mainPage').style.display = 'none';
-            document.getElementById('predictionPage').style.display = 'block';
+            const mainPage = document.getElementById('mainPage');
+            const predictionPage = document.getElementById('predictionPage');
+
+            mainPage.style.opacity = '0'; // Плавное исчезновение
+            setTimeout(() => {
+                mainPage.style.display = 'none';
+                predictionPage.style.display = 'block';
+                setTimeout(() => {
+                    predictionPage.style.opacity = '1'; // Плавное появление
+                }, 50);
+            }, 500); // Задержка для анимации
         }
 
+        // Функция для возврата на главную страницу
         function goBack() {
-            document.getElementById('mainPage').style.display = 'block';
-            document.getElementById('predictionPage').style.display = 'none';
+            const mainPage = document.getElementById('mainPage');
+            const predictionPage = document.getElementById('predictionPage');
+
+            predictionPage.style.opacity = '0'; // Плавное исчезновение
+            setTimeout(() => {
+                predictionPage.style.display = 'none';
+                mainPage.style.display = 'block';
+                setTimeout(() => {
+                    mainPage.style.opacity = '1'; // Плавное появление
+                }, 50);
+            }, 500); // Задержка для анимации
         }
+
+        // Обработка нажатий клавиш
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                showPrediction(); // Переход на страницу с предсказанием
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                goBack(); // Возврат на главную страницу
+            }
+        });
     </script>
 </body>
 </html>
