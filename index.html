@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трудовой Семестр</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .hand-outline {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+        .prediction-page {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainPage">
+        <img src="hand-outline.png" alt="Приложи ладонь" class="hand-outline" onclick="showPrediction()">
+        <div style="margin-top: 20px;">
+            Приложи ладонь и узнай, что ждет тебя в трудовом семестре!
+        </div>
+    </div>
+
+    <div class="container prediction-page" id="predictionPage">
+        <div id="predictionText">Ваше предсказание: Успех и удача!</div>
+        <button onclick="goBack()">Вернуться</button>
+    </div>
+
+    <script>
+        function showPrediction() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('predictionPage').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('mainPage').style.display = 'block';
+            document.getElementById('predictionPage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
