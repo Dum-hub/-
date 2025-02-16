@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Трудовой Семестр</title>
     <style>
+        /* Подключение шрифта Gotham */
+        @import url('https://fonts.cdnfonts.com/css/gotham');
+
         body, html {
             height: 100%;
             margin: 0;
@@ -13,15 +16,19 @@
             align-items: center;
             background-color: #1700FE; /* Синий фон */
             color: #FFFFFF; /* Белый текст */
-            font-family: Arial, sans-serif;
+            font-family: 'Gotham', sans-serif; /* Шрифт Gotham */
             overflow: hidden; /* Убираем скролл */
         }
         .container {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
             transition: opacity 0.5s ease-in-out; /* Анимация перехода */
         }
         .hand-outline {
-            width: 200px;
+            width: 600px; /* Увеличение в три раза */
             height: auto;
             cursor: pointer;
             transition: transform 0.3s ease; /* Анимация при наведении */
@@ -29,9 +36,23 @@
         .hand-outline:hover {
             transform: scale(1.1); /* Увеличиваем ладонь при наведении */
         }
+        .text-container {
+            text-align: right;
+            margin-left: 50px; /* Отступ от руки */
+        }
+        .main-text {
+            font-size: 4em; /* Увеличение шрифта в 4 раза */
+            font-weight: bold; /* Жирный шрифт */
+            line-height: 1.2;
+        }
         .prediction-page {
             display: none;
             opacity: 0; /* Начальная прозрачность для анимации */
+            text-align: center;
+        }
+        .prediction-text {
+            font-size: 3em; /* Размер шрифта для предсказания */
+            font-weight: bold; /* Жирный шрифт */
         }
         button {
             margin-top: 20px;
@@ -48,13 +69,15 @@
 <body>
     <div class="container" id="mainPage">
         <img src="hand-outline.png" alt="Приложи ладонь" class="hand-outline" onclick="showPrediction()">
-        <div style="margin-top: 20px;">
-            Приложи ладонь и узнай, что ждет тебя в трудовом семестре!
+        <div class="text-container">
+            <div class="main-text">
+                Приложи ладонь и узнай, что ждет тебя в трудовом семестре!
+            </div>
         </div>
     </div>
 
     <div class="container prediction-page" id="predictionPage">
-        <div id="predictionText">Ваше предсказание: Успех и удача!</div>
+        <div class="prediction-text" id="predictionText">Ваше предсказание: Успех и удача!</div>
         <button onclick="goBack()">Вернуться</button>
     </div>
 
@@ -67,7 +90,7 @@
             mainPage.style.opacity = '0'; // Плавное исчезновение
             setTimeout(() => {
                 mainPage.style.display = 'none';
-                predictionPage.style.display = 'block';
+                predictionPage.style.display = 'flex'; /* Используем flex для центрирования */
                 setTimeout(() => {
                     predictionPage.style.opacity = '1'; // Плавное появление
                 }, 50);
@@ -82,7 +105,7 @@
             predictionPage.style.opacity = '0'; // Плавное исчезновение
             setTimeout(() => {
                 predictionPage.style.display = 'none';
-                mainPage.style.display = 'block';
+                mainPage.style.display = 'flex'; /* Используем flex для центрирования */
                 setTimeout(() => {
                     mainPage.style.opacity = '1'; // Плавное появление
                 }, 50);
